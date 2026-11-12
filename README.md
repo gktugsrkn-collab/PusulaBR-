@@ -35,3 +35,14 @@ Bu sürüm banka hesabına bağlanmaz, ödeme yapmaz, otomatik banka bildirimi a
 
 ## Gizlilik
 Veriler Android DataStore ile uygulamanın özel alanında saklanır. JSON yedek dışa aktarıldığında kullanıcı tarafından seçilen konuma yazılır; yedek dosyasını güvenli saklayın. Uygulamayı kaldırmak yerel veriyi silebilir; kaldırmadan önce yedek alın.
+
+
+## GitHub'a yükleme ve APK alma
+
+1. Bu ZIP'i açın. İçindeki `pusulaBRC-v2` klasörünün **içindeki tüm dosya ve klasörleri** GitHub deposunun ana dizinine yükleyin. `.github` klasörünün de yüklendiğinden emin olun.
+2. GitHub deposunda **Actions** sekmesini açın. `Android APK` iş akışı otomatik başlayacaktır. Gerekirse `Run workflow` ile elle başlatın.
+3. İşlem başarılı olunca ilgili çalıştırmanın en altındaki **Artifacts** bölümünden `pusulaBRC-v2-debug-apk` dosyasını indirin. ZIP içindeki `app-debug.apk` dosyasını Android telefonda açarak kurabilirsiniz.
+
+## Derleme ayarı
+
+Java derleyicisi ve Kotlin derleyicisi aynı JVM hedefini kullanır: Java 17. GitHub Actions da Temurin Java 17 ve Gradle 8.9 kullanır.
