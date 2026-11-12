@@ -1,1 +1,43 @@
 
+name: PusulaBRC APK
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Kodları indir
+        uses: actions/checkout@v4
+
+      - name: Java 17 kur
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Gradle kur
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+
+      - name: ZIP dosyasını aç
+        run: unzip -q pusulaBRC-v2.0.0-source.zip -d .
+
+      - name: APK oluştur
+        working-directory: pusulaBRC-v2
+        run: gradle --no-daemon :app:assembleDebug
+
+      - name: APK dosyasını hazırla
+        uses: actions/upload-artifact@v4
+        with:
+          name: pusulaBRC-APK
+          path: pusulaBRC-v2/app/build/outputs/apk/debug/app-debug.apk
+          
